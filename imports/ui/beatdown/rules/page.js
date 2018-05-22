@@ -30,7 +30,7 @@ class BeatdownRulesPage extends Component {
       }
     }.bind(this), 200);
   }
-  
+
  
   render() {
 	  return (
@@ -76,8 +76,8 @@ class BeatdownRulesPage extends Component {
       }
 
       return(
-        <div className={sectionClass} onClick={this.selectSection.bind(this, {section})}>
-          <span className="inner-entry" key={section._id}>{section.name}</span>
+        <div className={sectionClass} onClick={this.selectSection.bind(this, {section})} key={section._id}>
+          <span className="inner-entry">{section.name}</span>
         </div>
       );
     }
