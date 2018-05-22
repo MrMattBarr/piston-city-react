@@ -1,0 +1,157 @@
+@import "colors.less";
+#beatdown-page {
+  p, ul, ol {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  ol.roman {
+    list-style: lower-roman;
+  }
+  .flextable {
+    @border: 1px solid @beatdown_red;
+    border: 2px solid black;
+    margin: 20px 10px;
+    background-color: #efefef;
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+    .row {
+      display: flex;
+      &.header-row {
+        background-color: @beatdown_dark_red;
+        border-bottom: 4px solid black;
+        color: white;
+      }
+      &>* {
+        width: 15%;
+        padding: 10px;
+        &:not(:last-child) {
+          border-right: 2px solid black;
+        }
+        &:first-child {
+          font-weight: bold;
+          width: 40%;
+        }
+        &:not(:first-child) {
+          display: flex;
+          justify-content: center;
+        }
+        &.big-cell {
+          width: 60%;
+        }
+        box-sizing: border-box;
+      }
+      &.fight-row {
+        &:not(:last-child) {
+          border-bottom: @border;
+        }
+        &:hover {
+          background-color: #def;
+        }
+        &>* {
+          &:hover {
+            background-color: #bdf;
+          }
+        }
+      }
+    }
+  }
+  max-width: 1350px;
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      max-width: 500px;
+      height: auto;
+    }
+  }
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    &>* {
+      margin-bottom: 20px;
+    }
+  }
+  .read-block {
+    border-color: @beatdown_red;
+    background-color: @beatdown_tansparent;
+    color: black;
+    text-shadow: initial;
+    border-width: 2px;
+    overflow: hidden;
+    min-width: 650px;
+    &>* {
+      padding: 20px;
+      &:not(:last-child) {
+        border-bottom: 1px solid @beatdown_red;
+      }
+    }
+    .summary {
+      margin-top: 50px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .about-the-game {
+        display: flex;
+        flex-direction: column;
+        min-width: 450px;
+        flex-basis: 450px;
+        flex-grow: 1;
+        align-items: flex-start;
+        justify-content: center;
+        ul {
+          font-size: 20px;
+          display: flex;
+          flex-direction: column;
+          align-content: center;
+          line-height: 1.5;
+        }
+      }
+      .game-preview {
+        flex-grow: 2;
+        max-width: 550px;
+        min-width: 250px;
+        flex-basis: 250px;
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+      }
+    }
+    .social-media {
+      padding-top: 20px;
+      .space-around>* {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-shadow: 0 0 4px rgba(0, 0, 0, 1);
+        i.fa {
+          padding: 10px;
+          color: @beatdown_blue;
+          font-size: 44px;
+        }
+      }
+    }
+  }
+  .mailing-list-button {
+    flex-shrink: 0;
+    background: linear-gradient(-180deg, @beatdown_red 0%, @beatdown_dark_red 100%);
+    box-shadow: 2px 2px 2px black;
+    padding: 15px 50px;
+    border-radius: 4px;
+    .fa {
+      margin-right: .5em;
+    }
+    &:hover {
+      background: @beatdown_red;
+    }
+    &:active {
+      padding: 17px 48px 13px 52px;
+      background: @beatdown_dark_red;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, .7) inset;
+    }
+  }
+}
