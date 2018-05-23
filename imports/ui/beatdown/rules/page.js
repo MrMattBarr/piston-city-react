@@ -16,7 +16,8 @@ class BeatdownRulesPage extends Component {
  
     this.state = {
       selectedSectionName: "",
-      selectedSectionId: null
+      selectedSectionId: null,
+      query: null
     };
   }
 
@@ -35,6 +36,8 @@ class BeatdownRulesPage extends Component {
     filters = {
       section: this.state.selectedSectionId
     };
+    if(this.state.query != null)
+      filters.searchableContent = this.state.query
 	  return (
 		  <div id="beatdown-page">
     		<div className="read-block">
@@ -81,10 +84,20 @@ class BeatdownRulesPage extends Component {
           {sectionRenders}
 				</div>
 		    <div className="search-holder">
-					<input disabled placeholder="Search coming soon..." />
+					<input onChange={this.updateSearch.bind(this)} placeholder="Search the rules" />
 				</div>
 			</div>
 		);
+  }
+
+
+  updateSearch(source){
+    query = source.target.value.toLowerCase()
+    if(query.length > 1){
+      this.setState({query: new RegExp('.*' + query + '.*')});
+    } else {
+      this.setState({query: null})
+    }
   }
 }
 
