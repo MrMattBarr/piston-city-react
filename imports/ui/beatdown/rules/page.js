@@ -25,10 +25,22 @@ class BeatdownRulesPage extends Component {
   //TODO: The settimeout here gives the view time to build its collections. There must be a better way.
   componentWillReceiveProps(props){
     setTimeout( function(){
-      if(props.sections.length > 0 && this.state.selectedSectionName.length == 0){
-        this.selectSection({section: props.sections[0]});
+     this.processCurrentPage();
+   }.bind(this), 200);
+  }
+
+  processCurrentPage(){
+      basePageUrl = this.props.match.url;
+      fullUrl = this.props.location.pathname;
+      slicedUrl = fullUrl.replace(basePageUrl, '');
+      subPages = slicedUrl.split('/')
+      subPages = _.filter(subPages, (x)=>x.length > 0);
+
+      tabUri = subPages[0] || 'intro';
+      selectedTab = _.find(this.props.sections, (x)=>x.uri == tabUri);
+      if(selectedTab){
+        this.selectSection({section: selectedTab});
       }
-    }.bind(this), 200);
   }
 
  
@@ -50,23 +62,24 @@ class BeatdownRulesPage extends Component {
     );
   }
 
-
-  sanitizeSectionName(name){
-    return name.toLowerCase().replace(' ', '-');
-  }
-
   selectSection({section}){
-    this.setState({
-      selectedSectionName: this.sanitizeSectionName(section.name),
-      selectedSectionId: section._id
-    })
+    if(section._id != this.state.selectedSectionId){
+      this.setState({
+        selectedSectionName: section.uri,
+        selectedSectionId: section._id
+      })
+
+      baseUri = this.props.match.url;
+      newUri = baseUri + '/' + section.uri;
+      this.props.history.push(newUri);
+    }
   }
 
 
   renderNavSection(){
     sectionRenders = this.props.sections.map(section => {
       sectionClass = 'entry'
-      if(this.sanitizeSectionName(section.name) == this.state.selectedSectionName){
+      if(section.uri == this.state.selectedSectionName){
         sectionClass += " selected";
       }
 
