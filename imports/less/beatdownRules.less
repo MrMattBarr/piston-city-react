@@ -93,6 +93,25 @@
         font-weight: bold;
         -webkit-text-stroke: 2px black;
       }
+      .related-rules {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        &>*:not(:last-child) {
+          margin-right: 10px;
+        }
+        .related-rule {
+          border: 1px solid white;
+          border-radius: 4px;
+          background: @beatdown_reference;
+          cursor: pointer;
+          padding: 2px 5px;
+          &:hover {
+            background: @beatdown_reference_hover;
+            color: white;
+          }
+        }
+      }
       .rule-content {
         margin: 5px 0;
       }

@@ -19,7 +19,6 @@ class Ruleset extends Component {
 }
 
 
-
 export default withTracker((filters) => {
 	filtersObj = filters.filters || {}
   return {
