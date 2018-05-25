@@ -13,40 +13,47 @@ class BeatdownRulesPage extends Component {
 
   constructor(props) {
     super(props);
- 
+
     this.state = {
-      selectedSectionName: "",
-      selectedSectionId: null,
+      selectedSection: "intro",
+      selectedRule: null,
       query: null
     };
   }
 
+ componentWillReceiveProps(props){
+    basePageUrl = props.match.url;
+    fullUrl = props.location.pathname;
+    slicedUrl = fullUrl.replace(basePageUrl, '');
+    subPages = slicedUrl.split('/')
+    subPages = _.filter(subPages, (x)=>x.length > 0);
+    this.setState({
+      selectedSection: subPages[0] || "intro",
+      selectedRule: subPages[1]|| null
+    });
+ }
 
-  //TODO: The settimeout here gives the view time to build its collections. There must be a better way.
-  componentWillReceiveProps(props){
-    setTimeout( function(){
-     this.processCurrentPage();
-   }.bind(this), 200);
-  }
 
-  processCurrentPage(){
-      basePageUrl = this.props.match.url;
-      fullUrl = this.props.location.pathname;
-      slicedUrl = fullUrl.replace(basePageUrl, '');
-      subPages = slicedUrl.split('/')
-      subPages = _.filter(subPages, (x)=>x.length > 0);
-
-      tabUri = subPages[0] || 'intro';
-      selectedTab = _.find(this.props.sections, (x)=>x.uri == tabUri);
-      if(selectedTab){
-        this.selectSection({section: selectedTab});
-      }
+ componentWillMount(){
+    basePageUrl = this.props.match.url;
+    fullUrl = this.props.location.pathname;
+    slicedUrl = fullUrl.replace(basePageUrl, '');
+    subPages = slicedUrl.split('/')
+    subPages = _.filter(subPages, (x)=>x.length > 0);
+    this.setState({
+      selectedSection: 'intro',
+      selectedRule: subPages[1]|| null
+    });
   }
 
  
   render() {
+    section = _.find(this.props.sections, (x)=> x.uri == this.state.selectedSection);
+    if(!section){
+      return null;
+    }
     filters = {
-      section: this.state.selectedSectionId
+      section: section._id
     };
     if(this.state.query != null)
       filters.searchableContent = this.state.query
@@ -55,36 +62,37 @@ class BeatdownRulesPage extends Component {
     		<div className="read-block">
 				  <div id="beatdown-rules">
 				  	{this.renderNavSection()}
-            <Ruleset filters={filters} />
+            <Ruleset filters={filters} selectRule={this.selectSection.bind(this)} emphasized={this.state.selectedRule} />
 	    		</div>
     		</div>
 		  </div>
     );
   }
 
-  selectSection({section}){
-    if(section._id != this.state.selectedSectionId){
-      this.setState({
-        selectedSectionName: section.uri,
-        selectedSectionId: section._id
-      })
-
+  selectSection({section, rule}){
+    this.setState({
+      selectedSection: section,
+      selectedRule: rule || null
+    }, ()=> {
       baseUri = this.props.match.url;
-      newUri = baseUri + '/' + section.uri;
+      newUri = baseUri + '/' + section;
+      if(rule){
+        newUri += '/' + rule;
+      }
       this.props.history.push(newUri);
-    }
+    });
   }
 
 
   renderNavSection(){
     sectionRenders = this.props.sections.map(section => {
       sectionClass = 'entry'
-      if(section.uri == this.state.selectedSectionName){
+      if(section.uri == this.state.selectedSection){
         sectionClass += " selected";
       }
 
       return(
-        <div className={sectionClass} onClick={this.selectSection.bind(this, {section})} key={section._id}>
+        <div className={sectionClass} onClick={this.selectSection.bind(this, {section:section.uri})} key={section._id}>
           <span className="inner-entry">{section.name}</span>
         </div>
       );

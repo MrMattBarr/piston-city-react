@@ -75,7 +75,6 @@
     border: @border_width solid @border_color;
     border-radius: 5px;
     border-top-left-radius: 0;
-    padding: 20px;
     .pro-tip {
       box-shadow: 0 0 1px 1px @border_color;
       text-align: justify;
@@ -86,12 +85,25 @@
       font-size: small;
     }
     .rule-section {
-      margin-bottom: 30px;
+      padding: 5px 10px;
+      margin-bottom: 10px;
+      &.emphasized {
+        border: 2px solid white;
+        border-radius: 5px;
+        background: rgba(200, 230, 255, 1);
+        .section-header {
+          color: @beatdown_light_red;
+        }
+      }
       .section-header {
+        cursor: pointer;
         font-size: 36px;
         color: #def;
         font-weight: bold;
         -webkit-text-stroke: 2px black;
+        &:hover {
+          color: @beatdown_light_red;
+        }
       }
       .related-rules {
         display: flex;
