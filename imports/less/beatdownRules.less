@@ -67,6 +67,10 @@
         font-family: Arial;
         font-size: 16px;
         border: 2px solid @border_color;
+        &:disabled {
+          background-color: #ddd;
+          cursor: not-allowed;
+        }
       }
     }
   }
@@ -94,6 +98,67 @@
         background: rgba(200, 230, 255, 1);
         .section-header {
           color: @beatdown_light_red;
+        }
+      }
+      .faq-list {
+        margin-top: 10px;
+        border-top: 1px solid @border_color;
+        padding: 10px;
+        .faq {
+          display: flex;
+          flex-direction: column;
+          margin-top: 10px;
+          .question {
+            font-weight: bold;
+          }
+          .answer {
+            font-size: 14px;
+          }
+        }
+      }
+      .faq-section {
+        display: flex;
+        align-items: flex-end;
+        textarea {
+          width: 700px;
+          margin-right: 20px;
+          height: 50px;
+          font-size: 16px;
+          padding: 5px;
+          color: @beatdown_dark_red;
+          &:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+          }
+        }
+        .faq-button {
+          height: 30px;
+          width: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 2px;
+          border: 1px solid #666;
+          transition-duration: .1s;
+          &:not(.disabled) {
+            cursor: pointer;
+            background: linear-gradient(-180deg, @beatdown_blue 0%, @beatdown_dark_blue 100%);
+          }
+          &.disabled {
+            background-color: @beatdown_blue;
+            cursor: not-allowed;
+            &.success {
+              background-color: @beatdown_light_green;
+            }
+          }
+          &:hover:not(.disabled) {
+            background: @beatdown_blue;
+          }
+          &:active:not(.disabled) {
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, .7) inset;
+            padding: 1px 0 0 1px;
+            background: @beatdown_dark_blue;
+          }
         }
       }
       .section-header {

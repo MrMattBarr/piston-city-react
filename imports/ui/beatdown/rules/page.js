@@ -5,6 +5,8 @@ import { RulesSections } from '../../../api/rulesSections.js';
 
 import Ruleset from './Ruleset.js';
 
+import FaqSection from './FaqSection.js';
+
 import '/imports/less/beatdown.less';
 import '/imports/less/beatdownRules.less';
  
@@ -52,21 +54,35 @@ class BeatdownRulesPage extends Component {
     if(!section){
       return null;
     }
-    filters = {
-      section: section._id
-    };
-    if(this.state.query != null)
-      filters.searchableContent = this.state.query
 	  return (
 		  <div id="beatdown-page">
     		<div className="read-block">
 				  <div id="beatdown-rules">
 				  	{this.renderNavSection()}
-            <Ruleset filters={filters} selectRule={this.selectSection.bind(this)} emphasized={this.state.selectedRule} />
+            {this.renderRuleset({section})}
 	    		</div>
     		</div>
 		  </div>
     );
+  }
+
+  renderRuleset({section}){
+    if(section.uri == 'faq'){
+      return <FaqSection />
+    }
+    filters = {
+      section: section._id
+    };
+    if(this.state.query != null)
+      filters = {
+        searchableContent: this.state.query
+      };
+    return(
+      <Ruleset
+        filters={filters}
+        selectRule={this.selectSection.bind(this)}
+        emphasized={this.state.selectedRule} />
+      );
   }
 
   selectSection({section, rule}){
@@ -105,10 +121,23 @@ class BeatdownRulesPage extends Component {
           {sectionRenders}
 				</div>
 		    <div className="search-holder">
-					<input onChange={this.updateSearch.bind(this)} placeholder="Search the rules" />
+          {this.renderRulesSearch()}
 				</div>
 			</div>
 		);
+  }
+
+  renderRulesSearch (){
+    placeholder = "Search the rules";
+    disabled = false
+    section = _.find(this.props.sections, (x)=> x.uri == this.state.selectedSection);
+    if(section.uri == 'faq'){
+      disabled = true;
+      placeholder = "Unable to search FAQs"
+    }
+    return(
+      <input disabled={disabled} onChange={this.updateSearch.bind(this)} placeholder={placeholder} />
+    );
   }
 
 

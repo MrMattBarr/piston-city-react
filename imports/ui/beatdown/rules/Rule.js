@@ -12,7 +12,7 @@ export default class Rule extends Component {
     }
     return (
     	<div className={ruleClass}>
-	    	<div className="section-header" onClick={this.selectRule.bind(this)}>{rule.name}</div>
+	    	<div className="section-header" onClick={this.selectRule.bind(this)} > {rule.name} </div>
 	    	{this.renderRelatedRules()}
 	    	<div className="rule-content" dangerouslySetInnerHTML={{__html: rule.content}}></div>
     	</div>
