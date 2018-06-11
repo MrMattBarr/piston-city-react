@@ -18,12 +18,28 @@ class BeatdownHeader extends Component {
 	      <div className="logo">
 	        <img src="/images/beatdown/logo.png" />
 	      </div>
+        {this.renderButtons()}
+      </div>
+	   );
+  }
+
+  renderButtons(){
+    return(
+      <div className="main-buttons">
+        <div className="rules-button" onClick={this.goToRules.bind(this)}>
+          <i className="fa fa-book"></i>
+          <span>Read the Rules</span>
+        </div>
         <a className="mailing-list-button" href="http://eepurl.com/dn3moj" target="_new">
           <i className="fa fa-envelope"></i>
           <span>Join the Mailing List</span>
         </a>
       </div>
-	   );
+    );
+  }
+
+  goToRules(){
+    this.props.history.push("/beatdown/rules");
   }
 
   renderDescription(){

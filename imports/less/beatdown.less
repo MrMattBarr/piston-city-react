@@ -136,22 +136,43 @@
       }
     }
   }
-  .mailing-list-button {
-    flex-shrink: 0;
-    background: linear-gradient(-180deg, @beatdown_red 0%, @beatdown_dark_red 100%);
-    box-shadow: 2px 2px 2px black;
-    padding: 15px 50px;
-    border-radius: 4px;
-    .fa {
-      margin-right: .5em;
+  .main-buttons {
+    display: flex;
+    flex-direction: column;
+    &>*:not(:last-child) {
+      margin-bottom: 10px;
     }
-    &:hover {
-      background: @beatdown_red;
+    .rules-button, .mailing-list-button {
+      color: white;
+      flex-shrink: 0;
+      box-shadow: 2px 2px 2px black;
+      padding: 15px 50px;
+      border-radius: 4px;
+      .fa {
+        margin-right: .5em;
+      }
+      &:active {
+        padding: 17px 48px 13px 52px;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, .7) inset;
+      }
     }
-    &:active {
-      padding: 17px 48px 13px 52px;
-      background: @beatdown_dark_red;
-      box-shadow: 2px 2px 2px rgba(0, 0, 0, .7) inset;
+    .rules-button {
+      background: linear-gradient(-180deg, @beatdown_blue 0%, @beatdown_dark_blue 100%);
+      &:hover {
+        background: @beatdown_blue;
+      }
+      &:active {
+        background: @beatdown_dark_blue;
+      }
+    }
+    .mailing-list-button {
+      background: linear-gradient(-180deg, @beatdown_red 0%, @beatdown_dark_red 100%);
+      &:hover {
+        background: @beatdown_red;
+      }
+      &:active {
+        background: @beatdown_dark_red;
+      }
     }
   }
 }

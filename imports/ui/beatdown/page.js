@@ -12,7 +12,7 @@ class BeatdownPage extends Component {
 	  return (
 		  <div id="beatdown-page">
 		    <div className="read-block">
-		      <BeatdownHeader/>
+		      <BeatdownHeader history={this.props.history}/>
 		      <BeatdownGameSummary/>
 		      <BeatdownSocialMedia/>
 		    </div>
