@@ -24,10 +24,10 @@ class BeatdownRulesPage extends Component {
   }
 
  componentWillReceiveProps(props){
-    basePageUrl = props.match.url;
-    fullUrl = props.location.pathname;
-    slicedUrl = fullUrl.replace(basePageUrl, '');
-    subPages = slicedUrl.split('/')
+    const basePageUrl = props.match.url;
+    const fullUrl = props.location.pathname;
+    const slicedUrl = fullUrl.replace(basePageUrl, '');
+    let subPages = slicedUrl.split('/')
     subPages = _.filter(subPages, (x)=>x.length > 0);
     this.setState({
       selectedSection: subPages[0] || "intro",

@@ -1,11 +1,14 @@
 @import "colors.less";
 #beatdown-page {
   p, ul, ol {
-    margin-top: 5px;
-    margin-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 1em;
   }
   ol.roman {
     list-style: lower-roman;
+  }
+  .overview {
+    padding: 20px;
   }
   .flextable {
     @border: 1px solid @beatdown_red;
@@ -30,7 +33,7 @@
         }
         &:first-child {
           font-weight: bold;
-          width: 40%;
+          width: 25%;
         }
         &:not(:first-child) {
           display: flex;
@@ -62,7 +65,8 @@
     align-items: center;
     justify-content: center;
     img {
-      max-width: 500px;
+      width: 500px;
+      max-width: 100%;
       height: auto;
     }
   }
@@ -72,7 +76,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     &>* {
-      margin-bottom: 20px;
+      margin-bottom: 2em;
     }
   }
   .read-block {
@@ -82,9 +86,7 @@
     text-shadow: initial;
     border-width: 2px;
     overflow: hidden;
-    min-width: 650px;
     &>* {
-      padding: 20px;
       &:not(:last-child) {
         border-bottom: 1px solid @beatdown_red;
       }
@@ -112,17 +114,21 @@
       }
       .game-preview {
         flex-grow: 2;
-        max-width: 550px;
         min-width: 250px;
-        flex-basis: 250px;
+        flex-basis: 25em;
         img {
           max-width: 100%;
           height: auto;
+          background-image: url("images/beatdown/preview-lowres.png");
+          background-size: contain;
         }
       }
     }
     .social-media {
       padding-top: 20px;
+      a {
+        text-align: center;
+      }
       .space-around>* {
         display: flex;
         flex-direction: column;
