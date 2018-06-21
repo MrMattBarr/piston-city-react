@@ -9,7 +9,7 @@ class Ruleset extends Component {
   render() {
     rulesRender = this.props.rules.map(rule => <Rule filters={this.props.filters} selectRule={this.props.selectRule} emphasized={rule.uri && rule.uri == this.props.emphasized} rule={rule} key={rule._id}/>);
   	return(
-      <div className="rules-body">
+      <div className="rules-body" onClick={this.props.onClick}>
         <div className="rule-section">
           {rulesRender}
         </div>

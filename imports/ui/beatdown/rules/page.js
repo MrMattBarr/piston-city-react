@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { RulesSections } from '../../../api/rulesSections.js';
 
 import Ruleset from './Ruleset.js';
-
+import PhoneNav from './PhoneNav.js';
 import FaqSection from './FaqSection.js';
 
 import '/imports/less/beatdown.less';
@@ -18,6 +18,7 @@ class BeatdownRulesPage extends Component {
 
     this.state = {
       selectedSection: "intro",
+      phoneNavOpen: false,
       selectedRule: null,
       query: null
     };
@@ -56,10 +57,16 @@ class BeatdownRulesPage extends Component {
     }
 	  return (
 		  <div id="beatdown-page">
-    		<div className="read-block">
+    		<div className="read-block flexy">
 				  <div id="beatdown-rules">
 				  	{this.renderNavSection()}
             {this.renderRuleset({section})}
+            <PhoneNav openPhoneNav={this.openPhoneNav.bind(this)}
+             open={this.state.phoneNavOpen}
+             sections={this.props.sections} 
+             selected={this.state.selectedSection}
+             select={this.selectSection.bind(this)}
+            />
 	    		</div>
     		</div>
 		  </div>
@@ -79,11 +86,23 @@ class BeatdownRulesPage extends Component {
       };
     return(
       <Ruleset
+        onClick={this.closePhoneNav.bind(this)}
         filters={filters}
         selectRule={this.selectSection.bind(this)}
         emphasized={this.state.selectedRule} />
       );
   }
+
+
+  openPhoneNav(){
+    this.setState({phoneNavOpen: true});
+  }
+
+
+  closePhoneNav(){
+    this.setState({phoneNavOpen: false});
+  }
+
 
   selectSection({section, rule}){
     this.setState({
@@ -96,6 +115,7 @@ class BeatdownRulesPage extends Component {
         newUri += '/' + rule;
       }
       this.props.history.push(newUri);
+      this.closePhoneNav();
     });
   }
 
@@ -117,7 +137,7 @@ class BeatdownRulesPage extends Component {
 
   	return(
 		  <div id="beatdown-rules-nav">
-				<div className="entries">
+				<div className="entries desktop-only">
           {sectionRenders}
 				</div>
 		    <div className="search-holder">

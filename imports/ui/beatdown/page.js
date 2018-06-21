@@ -11,7 +11,7 @@ class BeatdownPage extends Component {
   render() {
 	  return (
 		  <div id="beatdown-page">
-		    <div className="read-block">
+		    <div className="read-block scrollable">
 		      <BeatdownHeader history={this.props.history}/>
 		      <BeatdownGameSummary/>
 		      <BeatdownSocialMedia/>

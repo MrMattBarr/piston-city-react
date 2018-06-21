@@ -11,8 +11,10 @@ class BeatdownPage extends Component {
   <div id="beatdown-page">
     <div className="read-block">
       {this.renderHeader()}
-      {this.renderSumamry()}
-      {this.renderSocialMedia()}
+      <div className="scrollable">
+        {this.renderSumamry()}
+        {this.renderSocialMedia()}
+      </div>
     </div>
   </div>
     );

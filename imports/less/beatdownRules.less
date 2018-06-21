@@ -3,7 +3,52 @@
   @border_color: #666;
   @bg_color: #e8e0c4;
   @border_width: 2px;
+  display: flex;
+  flex-direction: column;
+  #phone-rules-nav {
+    flex-shrink: 0;
+    padding: 5px;
+    background: @border_color;
+    z-index: 2;
+    transition-duration: .25s;
+    max-height: 3em;
+    height: 3em;
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    .current-section {
+      color: @bg_color;
+      font-size: 1.5em;
+    }
+    &.open {
+      max-height: 15em;
+      height: 15em;
+      justify-content: space-between;
+      .all-sections {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: space-between;
+        align-items: center;
+        .entry {
+          font-size: 1.3em;
+          &:hover {
+            color: @beatdown_blue;
+          }
+          flex-grow: 1;
+          cursor: pointer;
+          color: @beatdown_light_red;
+          &.selected {
+            color: #ccc;
+          }
+        }
+      }
+    }
+  }
   #beatdown-rules-nav {
+    flex-shrink: 0;
     display: flex;
     color: @border_color;
     z-index: 2;
@@ -76,6 +121,8 @@
   .rules-body {
     background-color: @bg_color;
     color: #333;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     border: @border_width solid @border_color;
     border-radius: 5px;
     border-top-left-radius: 0;

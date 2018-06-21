@@ -6,7 +6,7 @@ import '/imports/less/menu.less';
 class Menu extends Component {
   render() {
     return (
-    	<div className="top-menu">
+    	<div className="top-menu desktop-only">
 		    <div className="nav-option" onClick={this.goToHome.bind(this)}>
 		      <div className="title">Piston City Games</div>
 		    </div>

@@ -1,5 +1,7 @@
 @import "colors.less";
 #beatdown-page {
+  display: flex;
+  flex-direction: column;
   p, ul, ol {
     margin-top: 0;
     margin-bottom: 1em;
@@ -80,12 +82,15 @@
     }
   }
   .read-block {
+    &.flexy {
+      display: flex;
+      flex-direction: column;
+    }
     border-color: @beatdown_red;
     background-color: @beatdown_tansparent;
     color: black;
     text-shadow: initial;
     border-width: 2px;
-    overflow: hidden;
     &>* {
       &:not(:last-child) {
         border-bottom: 1px solid @beatdown_red;
@@ -99,7 +104,6 @@
       .about-the-game {
         display: flex;
         flex-direction: column;
-        min-width: 450px;
         flex-basis: 450px;
         flex-grow: 1;
         align-items: flex-start;
