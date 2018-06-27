@@ -105,17 +105,19 @@ class BeatdownRulesPage extends Component {
 
 
   selectSection({section, rule}){
-    this.setState({
-      selectedSection: section,
-      selectedRule: rule || null
-    }, ()=> {
-      baseUri = this.props.match.url;
-      newUri = baseUri + '/' + section;
-      if(rule){
-        newUri += '/' + rule;
-      }
-      this.props.history.push(newUri);
-      this.closePhoneNav();
+    this.setState({selectedSection: null}, ()=>{
+      this.setState({
+        selectedSection: section,
+        selectedRule: rule || null
+      }, ()=> {
+        baseUri = this.props.match.url;
+        newUri = baseUri + '/' + section;
+        if(rule){
+          newUri += '/' + rule;
+        }
+        this.props.history.push(newUri);
+        this.closePhoneNav();
+      });
     });
   }
 

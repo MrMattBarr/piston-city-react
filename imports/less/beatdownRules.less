@@ -3,6 +3,8 @@
   @border_color: #666;
   @bg_color: #e8e0c4;
   @border_width: 2px;
+  @rule_highlight_color: #ec18bb;
+  @rule_header_color: #378a6c;
   display: flex;
   flex-direction: column;
   #phone-rules-nav {
@@ -135,14 +137,36 @@
       background-color: #dfd;
       font-size: .8em;
     }
-    .rule-section {
+    .top-bar {
+      color: @rule_header_color;
+      display: flex;
+      justify-content: flex-end;
+      font-size: 1.5em;
+      margin: 0 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid @border_color
+    }
+    .rule {
       padding: 5px 10px;
       &.emphasized {
         border: 2px solid white;
         border-radius: 5px;
         background: rgba(200, 230, 255, 1);
         .section-header {
-          color: #ec18bb;
+          color: @rule_highlight_color;
+        }
+      }
+      &.expanded {
+        .section-header {
+          .expander {
+            margin-right: .5em;
+            transform: rotate(90deg);
+          }
+        }
+      }
+      &:not(.expanded) {
+        .rule-content {
+          display: none;
         }
       }
       .faq-list {
@@ -213,8 +237,14 @@
         font-size: 1.5em;
         color: #378a6c;
         font-weight: bold;
+        display: flex;
+        align-items: center;
         &:hover {
           color: #ec18bb;
+        }
+        .expander {
+          margin-right: .25em;
+          transition-duration: .25s;
         }
       }
       .related-rules {
@@ -238,6 +268,23 @@
       }
       .rule-content {
         margin: 5px 0;
+        .rule-reference-bar {
+          display: flex;
+          color: @rule_header_color;
+          border-top: 1px solid @rule_header_color;
+          a {
+            color: @rule_header_color;
+            padding: 1em 0;
+            &:hover {
+              text-decoration: underline;
+              color: @rule_highlight_color;
+            }
+            i {
+              font-size: 1.5em;
+              margin-right: .25em;
+            }
+          }
+        }
       }
     }
     .example {
