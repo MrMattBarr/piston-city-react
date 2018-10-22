@@ -110,8 +110,8 @@ class BeatdownRulesPage extends Component {
         selectedSection: section,
         selectedRule: rule || null
       }, ()=> {
-        baseUri = this.props.match.url;
-        newUri = baseUri + '/' + section;
+        const baseUri = this.props.match.url;
+        let newUri = baseUri + '/' + section;
         if(rule){
           newUri += '/' + rule;
         }

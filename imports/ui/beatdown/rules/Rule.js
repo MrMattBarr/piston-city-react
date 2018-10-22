@@ -119,7 +119,7 @@ export default class Rule extends Component {
     if(!rule.relatedRules || rule.relatedRules.length == 0){
       return null;
     }
-    relatedRulesRender = rule.relatedRules.map(relatedRule => <RelatedRule ruleId={relatedRule} key={relatedRule}/>);
+    const relatedRulesRender = rule.relatedRules.map(relatedRule => <RelatedRule ruleId={relatedRule} key={relatedRule}/>);
     return (
       <div className="related-rules">
         <strong>Related Rules: </strong>
