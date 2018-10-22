@@ -24,8 +24,8 @@ export default class Rule extends Component {
 
 
   render() {
-  	rule = this.props.rule;
-    ruleClass = "rule";
+    const rule = this.props.rule;
+    let ruleClass = "rule";
     if(this.props.emphasized){
       ruleClass += ' emphasized';
     }
@@ -33,10 +33,10 @@ export default class Rule extends Component {
       ruleClass += " expanded"
     }
     return (
-    	<div className={ruleClass}>
+      <div className={ruleClass}>
         {this.renderRuleHeader()}
         {this.renderBody({rule})}
-    	</div>
+      </div>
     );
   }
 
@@ -86,12 +86,14 @@ export default class Rule extends Component {
   }
 
   renderDesktopHeader(){
+    const rule = this.props.rule;
     return(
       <div className="desktop-only" onClick={this.selectRule.bind(this)}> {rule.name} </div>
     );
   }
 
   renderMobileHeader(){
+    const rule = this.props.rule;
     return(
       <div className="phone-only" onClick={this.toggleExpand.bind(this)}>
         <i className="expander fa fa-caret-right"></i>
@@ -106,24 +108,24 @@ export default class Rule extends Component {
 
 
   selectRule(){
-    rule = this.props.rule;
-    ruleSection = RulesSections.findOne({_id: rule.section});
+    const rule = this.props.rule;
+    const ruleSection = RulesSections.findOne({_id: rule.section});
     this.props.selectRule({rule: this.props.rule.uri, section:ruleSection.uri});
   }
 
 
   renderRelatedRules() {
-  	rule = this.props.rule;
-  	if(!rule.relatedRules || rule.relatedRules.length == 0){
-  		return null;
-  	}
+    const rule = this.props.rule;
+    if(!rule.relatedRules || rule.relatedRules.length == 0){
+      return null;
+    }
     relatedRulesRender = rule.relatedRules.map(relatedRule => <RelatedRule ruleId={relatedRule} key={relatedRule}/>);
     return (
-	  	<div className="related-rules">
+      <div className="related-rules">
         <strong>Related Rules: </strong>
-	  	  {relatedRulesRender}
-	  	</div>
-  	);
+        {relatedRulesRender}
+      </div>
+    );
   }
 
 

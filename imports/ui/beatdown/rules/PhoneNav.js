@@ -10,18 +10,18 @@ export default class PhoneNav extends Component {
       navClass += " open";
     }
     return (      
-    	<div id="phone-rules-nav" onClick={this.props.openPhoneNav} className={navClass}>
-    		{this.renderNavSections()}
-    	</div>
+      <div id="phone-rules-nav" onClick={this.props.openPhoneNav} className={navClass}>
+        {this.renderNavSections()}
+      </div>
     );
   }
 
   renderNavSections(){
-  	if(this.props.open){
-  		return this.renderAllSections();
-  	}else {
-	  	return this.renderSelectedSection();
-  	}
+    if(this.props.open){
+      return this.renderAllSections();
+    }else {
+      return this.renderSelectedSection();
+    }
   }
 
   renderAllSections(){
@@ -43,13 +43,13 @@ export default class PhoneNav extends Component {
   }
 
   selectSection({section}){
-  	this.props.select({section});
+    this.props.select({section});
   }
 
   renderSelectedSection(){
-  	const selectedSection = _.find(this.props.sections, (x)=>x.uri == this.props.selected);
-  	return(
-  		<div className="current-section">{selectedSection.name}</div>
-  	);
+    const selectedSection = _.find(this.props.sections, (x)=>x.uri == this.props.selected);
+    return(
+      <div className="current-section">{selectedSection.name}</div>
+    );
   }
 }

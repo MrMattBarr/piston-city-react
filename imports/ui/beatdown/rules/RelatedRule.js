@@ -6,7 +6,7 @@ import { Rules } from '../../../api/rules.js';
 class RelatedRule extends Component {
   render() {
     return (
-  		<div className="related-rule">{this.props.rule.name}</div>
+      <div className="related-rule">{this.props.rule.name}</div>
     );
   }
 }

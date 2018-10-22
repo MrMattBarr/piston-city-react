@@ -38,10 +38,10 @@ class BeatdownRulesPage extends Component {
 
 
  componentWillMount(){
-    basePageUrl = this.props.match.url;
-    fullUrl = this.props.location.pathname;
-    slicedUrl = fullUrl.replace(basePageUrl, '');
-    subPages = slicedUrl.split('/')
+    const basePageUrl = this.props.match.url;
+    const fullUrl = this.props.location.pathname;
+    const slicedUrl = fullUrl.replace(basePageUrl, '');
+    let subPages = slicedUrl.split('/')
     subPages = _.filter(subPages, (x)=>x.length > 0);
     this.setState({
       selectedSection: 'intro',
@@ -51,15 +51,15 @@ class BeatdownRulesPage extends Component {
 
  
   render() {
-    section = _.find(this.props.sections, (x)=> x.uri == this.state.selectedSection);
+    const section = _.find(this.props.sections, (x)=> x.uri == this.state.selectedSection);
     if(!section){
       return null;
     }
-	  return (
-		  <div id="beatdown-page">
-    		<div className="read-block flexy">
-				  <div id="beatdown-rules">
-				  	{this.renderNavSection()}
+    return (
+      <div id="beatdown-page">
+        <div className="read-block flexy">
+          <div id="beatdown-rules">
+            {this.renderNavSection()}
             {this.renderRuleset({section})}
             <PhoneNav openPhoneNav={this.openPhoneNav.bind(this)}
              open={this.state.phoneNavOpen}
@@ -67,9 +67,9 @@ class BeatdownRulesPage extends Component {
              selected={this.state.selectedSection}
              select={this.selectSection.bind(this)}
             />
-	    		</div>
-    		</div>
-		  </div>
+          </div>
+        </div>
+      </div>
     );
   }
 
@@ -77,7 +77,7 @@ class BeatdownRulesPage extends Component {
     if(section.uri == 'faq'){
       return <FaqSection />
     }
-    filters = {
+    let filters = {
       section: section._id
     };
     if(this.state.query != null)
@@ -123,8 +123,8 @@ class BeatdownRulesPage extends Component {
 
 
   renderNavSection(){
-    sectionRenders = this.props.sections.map(section => {
-      sectionClass = 'entry'
+    const sectionRenders = this.props.sections.map(section => {
+      let sectionClass = 'entry'
       if(section.uri == this.state.selectedSection){
         sectionClass += " selected";
       }
@@ -137,22 +137,22 @@ class BeatdownRulesPage extends Component {
     }
     );
 
-  	return(
-		  <div id="beatdown-rules-nav">
-				<div className="entries desktop-only">
+    return(
+      <div id="beatdown-rules-nav">
+        <div className="entries desktop-only">
           {sectionRenders}
-				</div>
-		    <div className="search-holder">
+        </div>
+        <div className="search-holder">
           {this.renderRulesSearch()}
-				</div>
-			</div>
-		);
+        </div>
+      </div>
+    );
   }
 
   renderRulesSearch (){
-    placeholder = "Search the rules";
-    disabled = false
-    section = _.find(this.props.sections, (x)=> x.uri == this.state.selectedSection);
+    let placeholder = "Search the rules";
+    let disabled = false
+    const section = _.find(this.props.sections, (x)=> x.uri == this.state.selectedSection);
     if(section.uri == 'faq'){
       disabled = true;
       placeholder = "Unable to search FAQs"
@@ -164,7 +164,7 @@ class BeatdownRulesPage extends Component {
 
 
   updateSearch(source){
-    query = source.target.value.toLowerCase()
+    const query = source.target.value.toLowerCase()
     if(query.length > 1){
       this.setState({query: new RegExp('.*' + query + '.*')});
     } else {

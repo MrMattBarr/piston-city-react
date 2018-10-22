@@ -20,14 +20,14 @@ class FaqSection extends Component {
       <div className="rules-body">
         <div className='rule-section'>
           <div className='rule'>
-  	        <div className="section-header">Ask a Question</div>
-  	        <p>Something not making sense? Found a typo? Let us know below. As questions come in, we'll update the rules and the FAQ. the world's first FAQ actually made up of AQs.</p>
-  	        <div className="faq-section">
+            <div className="section-header">Ask a Question</div>
+            <p>Something not making sense? Found a typo? Let us know below. As questions come in, we'll update the rules and the FAQ. the world's first FAQ actually made up of AQs.</p>
+            <div className="faq-section">
               {this.renderTextArea()}
               {this.renderAskButton()}
-  	        </div>
+            </div>
             {this.renderFaqs()}
-  	      </div>
+          </div>
         </div>
       </div>
     );

@@ -9,14 +9,14 @@ import '/imports/less/beatdown.less';
 class BeatdownPage extends Component {
  
   render() {
-	  return (
-		  <div id="beatdown-page">
-		    <div className="read-block scrollable">
-		      <BeatdownHeader history={this.props.history}/>
-		      <BeatdownGameSummary/>
-		      <BeatdownSocialMedia/>
-		    </div>
-		  </div>
+    return (
+      <div id="beatdown-page">
+        <div className="read-block scrollable">
+          <BeatdownHeader history={this.props.history}/>
+          <BeatdownGameSummary/>
+          <BeatdownSocialMedia/>
+        </div>
+      </div>
     );
   }
 }

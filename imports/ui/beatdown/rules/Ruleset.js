@@ -4,6 +4,7 @@ import { Rules } from '../../../api/rules.js';
 
 import Rule from './Rule.js';
 import IconRule from './IconRule.js';
+import ComponentRule from './ComponentRule.js';
  
 // Task component - represents a single todo item
 class Ruleset extends Component {
@@ -12,7 +13,8 @@ class Ruleset extends Component {
     super(props);
 
     this.customRuleRenders = {
-      icons: IconRule
+      icons: IconRule,
+      components: ComponentRule
     }
 
     this.state = {
@@ -21,7 +23,7 @@ class Ruleset extends Component {
   }
 
   render() {
-    rulesRender = this.props.rules.map(rule => {
+    const rulesRender = this.props.rules.map(rule => {
       const defaultCollapsed = this.shouldCollapseRule({rule});
       let RuleRenderer = this.customRuleRenders[rule.uri] || Rule;
       return (<RuleRenderer 
@@ -32,7 +34,7 @@ class Ruleset extends Component {
         defaultCollapsed={defaultCollapsed}
         key={rule._id}/>);
     });
-  	return(
+    return(
       <div className="rules-body" onClick={this.props.onClick}>
         <div className="rule-section">
           {this.renderTopBar()}
@@ -56,7 +58,7 @@ class Ruleset extends Component {
 
 
   renderToggleCollapse(){
-    iconClass = " collapse-toggle fa";
+    let iconClass = " collapse-toggle fa";
     if(this.state.collapseAll){
       iconClass += " fa-plus-square";
     } else {
