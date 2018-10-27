@@ -1,0 +1,47 @@
+@import "colors.less";
+.tier {
+  padding: .5em 0;
+  .description {
+    margin: .5em 0 1em;
+    color: #0d518b;
+    font-size: .9em;
+    font-style: italic;
+  }
+  .tier-name {
+    font-size: 1.3em;
+    font-weight: bold;
+    text-shadow: 0 0 2px black;
+    -webkit-text-stroke: .4px black;
+    color: white;
+  }
+  .backer {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    .name {
+      color: #661205;
+      font-weight: bold;
+    }
+    .message-holder {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: .75em;
+      margin-bottom: 1em;
+      .tail {
+        width: 0;
+        height: 0;
+        border-right: .65em solid transparent;
+        border-bottom: .5em solid #eee;
+        z-index: 2;
+      }
+      .message {
+        box-shadow: .1em .1em .25em black;
+        padding: 5px;
+        margin-right: 1em;
+        border-radius: 0 5px 5px 5px;
+        background-color: #eee;
+      }
+    }
+  }
+}
