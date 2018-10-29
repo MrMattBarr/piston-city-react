@@ -15,7 +15,7 @@ class BeatdownHeader extends Component {
   renderHeader(){
     return(
       <div className="header">
-        <div className="logo">
+        <div className="logo"onClick={this.goToBeatdown.bind(this)}>
           <img src="/images/beatdown/logo.png" />
         </div>
         {this.renderButtons()}
@@ -30,10 +30,6 @@ class BeatdownHeader extends Component {
           <i className="fa fa-book"></i>
           <span>Read the Rules</span>
         </div>
-        <a className="mailing-list-button" href="http://eepurl.com/dn3moj" target="_new">
-          <i className="fa fa-envelope"></i>
-          <span>Join the Mailing List</span>
-        </a>
       </div>
     );
   }
@@ -42,7 +38,14 @@ class BeatdownHeader extends Component {
     this.props.history.push("/beatdown/rules");
   }
 
+  goToBeatdown(){
+    this.props.history.push("/beatdown");
+  }
+
   renderDescription(){
+    if(this.props.hideDescription){
+      return null;
+    }
     return(
       <div>
         <p>"Plan your combo. Save the city together. — A fun, cooperative, strategic crime-fighting card game."</p>

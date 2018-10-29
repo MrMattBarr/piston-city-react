@@ -2,6 +2,31 @@
 #beatdown-page {
   display: flex;
   flex-direction: column;
+  .backers-blurb {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .backers-button {
+      color: white;
+      flex-shrink: 0;
+      box-shadow: 2px 2px 2px black;
+      padding: 15px 50px;
+      border-radius: 4px;
+      &>*:not(:last-child) {
+        margin-right: 1.5em;
+      }
+      background: linear-gradient(-180deg, @beatdown_red 0%, @beatdown_dark_red 100%);
+      &:hover {
+        background: @beatdown_red;
+      }
+      &:active {
+        background: @beatdown_dark_red;
+        padding: 17px 48px 13px 52px;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, .7) inset;
+      }
+    }
+  }
   p, ul, ol {
     margin-top: 0;
     margin-bottom: 1em;

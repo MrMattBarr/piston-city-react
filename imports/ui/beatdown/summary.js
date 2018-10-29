@@ -7,7 +7,7 @@ class BeatdownGameSummary extends Component {
     return(
       <div className="summary">
         <div className="game-preview">
-          <img src="images/beatdown/preview.png" />
+          <img src="/images/beatdown/preview.png" />
         </div>
         <div className="grow"></div>
         <div className="about-the-game">
